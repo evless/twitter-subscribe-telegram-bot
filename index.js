@@ -3,6 +3,7 @@ const request = require('request');
 const OAuth = require('oauth');
 const cron = require('cron').CronJob;
 const moment = require('moment');
+const http = require('http');
 
 const bot = new Telegraf(process.env.TELEGRAF_TOKEN);
 const subscribers = {};
@@ -116,3 +117,5 @@ let c = new cron('*/10 * * * *', () => {
 });
 
 c.start()
+
+http.createServer().listen(3000);
