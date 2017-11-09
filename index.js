@@ -29,18 +29,18 @@ const checkUser = (userName, callback) => {
     let url = `https://api.twitter.com/1.1/users/show.json?screen_name=${userName}`;
     oauth.get(url, token, tokenSecret, (error, body, response) => {
         let res = JSON.parse(body);
-        console.log(res)
+
         callback(res.errors === undefined);
     });
 }
 
 bot.command('/subscribe', ({ reply, message }) => {
-    let name = message.text.replace('/s', '').replace('@', '').trim();
+    let name = message.text.replace('/subscribe', '').replace('@', '').trim();
     if (!name.length) {
         reply('Ты бы хоть написал что почитать то хочешь, сынок!');
         return;
     }
-    console.log(message.chat.id)
+
     if (!subscribers[message.chat.id]) subscribers[message.chat.id] = [];
     checkUser(name, (checked) => {
         if (checked) {
@@ -52,7 +52,7 @@ bot.command('/subscribe', ({ reply, message }) => {
     });
 });
 bot.command('/unsubscribe', ({ message }) => {
-    let name = message.text.replace('/us', '').replace('@', '').trim();
+    let name = message.text.replace('/unsubscribe', '').replace('@', '').trim();
     if (!name.length) {
         reply('Ты укажи от кого отписаться то, чо как Ромочка');
         return;
@@ -68,6 +68,7 @@ bot.startPolling()
 
 
 const getTweets = (reply, id, count = 1, checkTime = false) => {
+    if (!subscribers[id]) return;
     let arr = Object.keys(subscribers[id]);
 
     if (!count.length) {
@@ -110,7 +111,6 @@ const getTweets = (reply, id, count = 1, checkTime = false) => {
 
 let c = new cron('*/10 * * * *', () => {
     Object.keys(subscribers).forEach(sub => {
-        console.log(sub)
         getTweets(bot.telegram.sendMessage.bind(bot.telegram, sub), sub, '10', true);
     })
 });
