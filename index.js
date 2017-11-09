@@ -85,7 +85,7 @@ const getTweets = (reply, id, count = 1, checkTime = false) => {
     console.log(arr);
     arr.map(twitterAccount => {
         let url = `https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${twitterAccount}&count=${count}`;
-        console.log(url)
+
         oauth().get(url, token, tokenSecret, (error, body, response) => {
             let res = JSON.parse(body);
 
