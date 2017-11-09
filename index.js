@@ -82,7 +82,7 @@ const getTweets = (reply, id, count = 1, checkTime = false) => {
         reply('Ты подпишись сначала на чтонибудь сук');
         return;
     }
-    console.log(arr);
+
     arr.map(twitterAccount => {
         let url = `https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${twitterAccount}&count=${count}`;
 
