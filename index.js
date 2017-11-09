@@ -119,6 +119,4 @@ let c = new cron('*/10 * * * *', () => {
     })
 });
 
-c.start()
-
-http.createServer().listen(3000);
+c.start();
