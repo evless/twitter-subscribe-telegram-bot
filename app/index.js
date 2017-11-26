@@ -11,3 +11,5 @@ const bot = initBot({ storage, api: apiMethods });
 if (config.cron.on) {
     cron({ cron: config.cron.expression, storage, api: apiMethods, bot });
 }
+
+console.log(`Started bot :: ${process.env.NODE_ENV || 'develop'} mode`);

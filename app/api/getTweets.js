@@ -47,8 +47,7 @@ export const getTweets = (oauth) =>
                     }
 
                     reply(
-                        `${item.text}
-                        https://twitter.com/${twitterAccount}/status/${item.id}`
+                        `https://twitter.com/${twitterAccount}/status/${item.id_str}`
                     )
                 });
             });

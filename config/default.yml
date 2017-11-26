@@ -1,4 +1,5 @@
 TELEGRAF_TOKEN: ""
+telegram_bot_name: "tweet_subscribe_bot"
 twitter:
   CONSUMER_KEY: ""
   CONSUMER_SECRET: ""

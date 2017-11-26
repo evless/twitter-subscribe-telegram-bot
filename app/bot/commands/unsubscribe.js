@@ -8,8 +8,8 @@ export const unsubscribe = ({ storage, api, regExp }) =>
             return;
         }
 
-        if (storage.subscribers[message.chat.id]) {
+        if (storage.data.subscribers[message.chat.id]) {
             reply(`Вы отписались от ${name}`)
-            delete storage.subscribers[message.chat.id][name];
+            delete storage.data.subscribers[message.chat.id][name];
         }
     };

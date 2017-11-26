@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "run-s clean compile docker:build",
+    "build:prod": "run-s clean compile docker:build docker:push",
     "build:dev": "run-s clean compile start",
     "clean": "run-p clean:*",
     "clean:build": "rm -rf build/",
     "compile": "babel app -d build",
     "start": "node build/index.js",
-    "docker:build": "sudo docker build -f ./Dockerfile -t $npm_package_dockerRegistry/$npm_package_name:$npm_package_version ."
+    "docker:build": "sudo docker build -f ./Dockerfile -t $npm_package_dockerRegistry/$npm_package_name:$npm_package_version .",
+    "docker:push": "sudo docker push $npm_package_dockerRegistry/$npm_package_name:$npm_package_version"
   },
   "author": "",
   "license": "ISC",
