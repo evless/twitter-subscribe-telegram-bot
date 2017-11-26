@@ -7,4 +7,4 @@ twitter:
   TOKEN_SECRET: ""
 cron:
   expression: "*/1 * * * *"
-  turnOn: true
+  on: true
