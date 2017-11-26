@@ -1,0 +1,9 @@
+TELEGRAF_TOKEN: ""
+twitter:
+  CONSUMER_KEY: ""
+  CONSUMER_SECRET: ""
+  TOKEN: ""
+  TOKEN_SECRET: ""
+cron:
+  expression: "*/10 * * * *"
+  turnOn: true

@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "twitter-telegram-bot",
+            "script": "build/index.js",
+            "instance_var": "0",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}

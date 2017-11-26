@@ -1,0 +1,1 @@
+export const replaceMessage = (message, regExp = /@|\s/g) => message.replace(regExp, '');
