@@ -10,6 +10,6 @@ export const oauth = () => new OAuth(
     consumerKey,
     consumerSecret,
     '1.0A',
-    (a, b) => console.log('a', 'b', a, b),
+    null,
     'HMAC-SHA1'
 );
