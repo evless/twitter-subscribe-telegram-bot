@@ -1,7 +1,5 @@
 import config from 'config';
-import moment from 'moment';
-
-const dateFormat = 'ddd MMM DD HH:mm:ss';
+import { formatDateToTimestamp } from '../utils';
 
 export const getTweets = (oauth) =>
     ({ reply, id, count, checkTime = false, message = 'System:: ', storage }) => {
@@ -32,11 +30,11 @@ export const getTweets = (oauth) =>
                 const res = JSON.parse(body);
 
                 if (!storage.data.subscribers[id][twitterAccount]) {
-                    storage.data.subscribers[id][twitterAccount] = moment(res[0].created_at, dateFormat).format('x')
+                    storage.data.subscribers[id][twitterAccount] = formatDateToTimestamp(res[0].created_at)
                 }
 
                 res.forEach(item => {
-                    const time = moment(item.created_at, dateFormat).format('x');
+                    const time = formatDateToTimestamp(item.created_at);
 
                     if (checkTime) {
                         if (storage.data.subscribers[id][twitterAccount] >= time) {

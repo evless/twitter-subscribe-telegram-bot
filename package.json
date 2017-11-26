@@ -4,18 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "run-s clean compile docker:build docker:push",
-    "build:dev": "run-s clean compile start",
+    "build:prod": "run-s clean compile:prod test docker:*",
+    "build:dev": "run-s clean compile:dev start",
     "clean": "run-p clean:*",
     "clean:build": "rm -rf build/",
-    "compile": "babel app -d build",
-    "start": "node build/index.js",
+    "compile:prod": "babel app -d build",
+    "compile:dev": "babel -w app -d build",
+    "start": "supervisor -w build build/index.js",
     "docker:build": "sudo docker build -f ./Dockerfile -t $npm_package_dockerRegistry/$npm_package_name:$npm_package_version .",
-    "docker:push": "sudo docker push $npm_package_dockerRegistry/$npm_package_name:$npm_package_version"
+    "docker:push": "sudo docker push $npm_package_dockerRegistry/$npm_package_name:$npm_package_version",
+    "test": "ava test"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ava": "^0.23.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-0": "^6.24.1",
