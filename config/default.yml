@@ -5,6 +5,3 @@ twitter:
   CONSUMER_SECRET: ""
   TOKEN: ""
   TOKEN_SECRET: ""
-cron:
-  expression: "*/1 * * * *"
-  on: true
