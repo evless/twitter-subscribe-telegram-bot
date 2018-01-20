@@ -1,3 +1,0 @@
-cron:
-  expression: "*/10 * * * *"
-  on: true

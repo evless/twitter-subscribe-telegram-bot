@@ -16,6 +16,10 @@ export const getTweets = (oauth) =>
             return;
         }
 
+        if (count > 10) {
+            reply('Нельзя посмотреть больше 10 твитов, так что держи что есть:');
+        }
+
         arr.map(twitterAccount => {
             const url = `https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${twitterAccount}&count=${count}`;
 
@@ -33,7 +37,7 @@ export const getTweets = (oauth) =>
                     storage.data.subscribers[id][twitterAccount] = formatDateToTimestamp(res[0].created_at)
                 }
 
-                res.forEach(item => {
+                res.reverse().forEach(item => {
                     const time = formatDateToTimestamp(item.created_at);
 
                     if (checkTime) {

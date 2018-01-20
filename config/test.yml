@@ -1,4 +1,2 @@
-cron:
-  expression: "* * * * * *"
 test_accounts:
   twitter: _evless

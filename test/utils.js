@@ -47,17 +47,6 @@ test.cb('should oauth utils', t => {
     )
 });
 
-test.cb('should cron utils', t => {
-    const storage = { data: { subscribers: {} } };
-    const api = {};
-    const bot = {};
-    const cron = utils.cron({ cron: config.cron.expression, storage, api, bot });
-    cron.addCallback(function() {
-        t.end();
-    });
-    t.true(cron._callbacks.length === 2);
-});
-
 test('should formatDateToTimestamp', t => {
     const result = utils.formatDateToTimestamp('Sun Nov 26 09:28:47 +0000 2017');
     t.is(result, '1511677727000');

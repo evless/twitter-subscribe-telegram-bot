@@ -1,7 +1,8 @@
-import { CronJob } from 'cron';
+import { scheduleJob } from 'node-schedule';
 
 const handler = ({ storage, bot, api }) => () => {
     Object.keys(storage.data.subscribers).forEach(id => {
+        console.log(id);
         const reply = bot.telegram.sendMessage.bind(bot.telegram, id);
         api.getTweets({
             storage,
@@ -11,10 +12,4 @@ const handler = ({ storage, bot, api }) => () => {
             checkTime: true
         });
     })
-}
-
-export const cron = ({ cron = '*/1 * * * *', storage, bot, api }) => {
-    const timer = new CronJob(cron, handler({ storage, bot, api }));
-    timer.start();
-    return timer;
 }
