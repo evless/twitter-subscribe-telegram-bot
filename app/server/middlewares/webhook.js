@@ -1,0 +1,1 @@
+export const webhook = ({ bot }) => bot.webhookCallback('/secret-path');

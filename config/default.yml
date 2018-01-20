@@ -1,7 +1,13 @@
-TELEGRAF_TOKEN: ""
+TELEGRAF_TOKEN: ''
 telegram_bot_name: "tweet_subscribe_bot"
 twitter:
-  CONSUMER_KEY: ""
-  CONSUMER_SECRET: ""
-  TOKEN: ""
-  TOKEN_SECRET: ""
+  CONSUMER_KEY: ''
+  CONSUMER_SECRET: ''
+  TOKEN: ''
+  TOKEN_SECRET: ''
+PORT: 3030
+domain: ''
+path:
+  secret: ''
+  checkTweets: 'check-tweets'
+  getStorage: 'get-storage'
