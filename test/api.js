@@ -7,15 +7,21 @@ const api = require('../build/api').api;
 const oauth = utils.oauth();
 let apiMethods;
 
-const storage = {
-    data: {
-        subscribers: {
-            0: {
-                [config.test_accounts.twitter]: 0
-            }
+let storage = {}
+
+test.before(t => {
+    storage = {
+        data: {
+            [config.test_accounts.twitter]: 0
+        },
+        countSubscribers: () => Promise.resolve(1),
+        getSubscribers: (id) => Promise.resolve(storage.data),
+        updateSubscriber(chatId, subscriber, time) {
+            storage.data[subscriber] = time;
+            return Promise.resolve(storage.data)
         }
-    }
-}
+    };
+})
 
 test('should get apiMethods', t => {
     apiMethods = api(oauth);
@@ -57,7 +63,7 @@ test.cb('should getTweets api', t => {
 
 test.cb('should getTweets with checkTime api', t => {
     const oauth = utils.oauth();
-    const dateFormat = 'ddd MMM DD HH:mm:ss';
+    const dateFormat = 'ddd MMM DD HH:mm:ss +ZZ YYYY';
     let prevLastTweet;
     let lastTweet;
     const url = `https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${config.test_accounts.twitter}&count=2`;
@@ -79,7 +85,7 @@ test.cb('should getTweets with checkTime api', t => {
             const res = JSON.parse(body);
             lastTweet = res[0];
             prevLastTweet = res[1];
-            storage.data.subscribers['0'][config.test_accounts.twitter] = moment(prevLastTweet.created_at, dateFormat).format('x')
+            storage.data[config.test_accounts.twitter] = moment(prevLastTweet.created_at, dateFormat).format('x')
             apiMethods.getTweets({
                 reply,
                 id: 0,

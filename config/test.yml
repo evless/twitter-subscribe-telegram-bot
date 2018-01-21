@@ -1,2 +1,5 @@
 test_accounts:
   twitter: _evless
+db:
+  ip: '127.0.0.1'
+  name: 'twitter-bot-test'

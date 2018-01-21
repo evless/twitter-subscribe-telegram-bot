@@ -6,7 +6,7 @@ export default class Storage {
     init = () =>
         mongoose
             .connect(`mongodb://${config.db.ip}/${config.db.name}`)
-            .then(result => console.log(`Mongoose :: Start on IP ${config.db.ip}`))
+            .then(result => console.log(`Mongoose :: Start on IP ${config.db.ip} and name ${config.db.name}`))
             .catch(err => {
                 console.log('--- Mongoose Error Start ---');
                 console.log(err)

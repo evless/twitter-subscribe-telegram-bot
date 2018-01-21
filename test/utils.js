@@ -51,3 +51,9 @@ test('should formatDateToTimestamp', t => {
     const result = utils.formatDateToTimestamp('Sun Nov 26 09:28:47 +0000 2017');
     t.is(result, '1511677727000');
 });
+
+test('should errorHelper', t => {
+    utils.errorHelper('TEST', 0, (message) => {
+        t.is(message, 'Что-то пошло не так! :( Обратитесь к администратору.');
+    });
+})
