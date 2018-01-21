@@ -13,7 +13,6 @@
     "docker:build": "sudo docker build -f ./Dockerfile -t $npm_package_dockerRegistry/$npm_package_name:$npm_package_version .",
     "docker:push": "sudo docker push $npm_package_dockerRegistry/$npm_package_name:$npm_package_version",
     "test": "ava test",
-    "preversion": "npm test",
     "postversion": "git push && git push --tags"
   },
   "author": "",
