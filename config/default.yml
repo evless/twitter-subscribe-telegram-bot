@@ -11,3 +11,6 @@ path:
   secret: ''
   checkTweets: 'check-tweets'
   getStorage: 'get-storage'
+db:
+  ip: '127.0.0.1'
+  name: 'twitter-bot'

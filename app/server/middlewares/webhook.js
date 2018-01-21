@@ -1,1 +1,3 @@
-export const webhook = ({ bot }) => bot.webhookCallback('/secret-path');
+import config from 'config';
+
+export const webhook = ({ bot }) => bot.webhookCallback(`/${config.path.secret}`);

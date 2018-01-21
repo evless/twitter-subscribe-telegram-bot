@@ -1,4 +1,4 @@
-import { replaceMessage } from '../../utils';
+import { replaceMessage, errorHelper } from '../../utils';
 
 export const subscribe = ({ storage, api, regExp }) =>
     ({ reply, message }) => {
@@ -8,19 +8,17 @@ export const subscribe = ({ storage, api, regExp }) =>
             return;
         }
 
-        if (!storage.getData().subscribers[message.chat.id]) {
-            storage.getData().subscribers[message.chat.id] = {};
-        }
-
         api.checkUser({
             name,
             message,
             callback(checked) {
                 if (checked) {
-                    storage.getData().subscribers[message.chat.id][name] = 0;
-                    reply(`Вы подписались на твиттер ${name}`)
+                    storage
+                        .addSubscriber(message.chat.id, name)
+                        .then(result => reply(`Вы подписались на твиттер ${name}`))
+                        .catch(error => errorHelper(error, message.chat.id, reply))
                 } else {
-                    reply('Нет такого твиттерянского!');
+                    reply('Такой твиттер аккаунт не найден.');
                 }
             }
         });

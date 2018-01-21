@@ -10,7 +10,6 @@ console.log('Running start...');
 
 const apiMethods = api(oauth());
 const storage = new Storage();
+storage.init();
 const bot = initBot({ storage, api: apiMethods });
 const server = initServer({ bot, storage, api: apiMethods });
-
-console.log(`Successful start :: ${process.env.NODE_ENV} mode`);

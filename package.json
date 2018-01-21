@@ -22,14 +22,15 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-0": "^6.24.1",
-    "express": "^4.16.2",
     "nodemon": "^1.13.3",
     "npm-run-all": "^4.0.2"
   },
   "dependencies": {
     "config": "^1.28.1",
+    "express": "^4.16.2",
     "js-yaml": "^3.10.0",
     "moment": "^2.19.1",
+    "mongoose": "^5.0.1",
     "node-schedule": "^1.2.5",
     "oauth": "^0.9.15",
     "telegraf": "^3.15.3"

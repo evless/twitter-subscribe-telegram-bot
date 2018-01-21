@@ -1,15 +1,15 @@
-import { replaceMessage } from '../../utils';
+import { replaceMessage, errorHelper } from '../../utils';
 
 export const unsubscribe = ({ storage, api, regExp }) =>
     ({ message, reply }) => {
         const name = replaceMessage(message.text, regExp);
         if (!name.length) {
-            reply('Ты укажи от кого отписаться то, чо как Ромочка');
+            reply('Напишите название твиттер аккаунта, от которого желаете отписаться.');
             return;
         }
 
-        if (storage.data.subscribers[message.chat.id]) {
-            reply(`Вы отписались от ${name}`)
-            delete storage.data.subscribers[message.chat.id][name];
-        }
+        storage
+            .removeSubscriber(message.chat.id, name)
+            .then(result => reply(`Вы отписались от ${name}`))
+            .catch(error => errorHelper(error, message.chat.id, reply))
     };
